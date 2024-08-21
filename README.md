@@ -1,1 +1,1 @@
-# DCST2002-Webutvikling
+# Course DCST2002-Webutvikling
