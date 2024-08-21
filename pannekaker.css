@@ -1,0 +1,18 @@
+body {
+
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: lighter;
+    font-size: 1.2em;
+    margin-left: 5em;
+    margin-right: 5em;
+    background-color: lightgrey;  
+}
+
+#steps {
+    list-style-type: upper-roman;
+    text-align: justify;
+    color: rgb(100, 150, 255)
+}
+
+
+
