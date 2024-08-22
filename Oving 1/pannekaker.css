@@ -8,7 +8,7 @@ body {
     background-color: lightgrey;  
 }
 
-#steps {
+#headline {
     list-style-type: upper-roman;
     text-align: justify;
     color: rgb(100, 150, 255)

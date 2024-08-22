@@ -1,0 +1,107 @@
+body {
+
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: lighter;
+    font-size: 1.2em;
+    margin-left: 5em;
+    margin-right: 5em;
+    background-color: lightgrey;  
+}
+
+/* Image styling */
+
+.main-image {
+    border-radius: 50%;
+    max-width: 100%;
+    height: auto;
+    image-resolution: 300dpi;
+    margin: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    display: block;
+
+  }
+.other-image {
+    border-radius: 50%;
+    max-width: 50%;
+    height: 5em;
+    margin: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 5em;
+    display: block;
+    image-resolution: 300dpi;
+}
+
+img:hover {
+    transform: scale(1.1);
+}
+
+/* Headline styling */
+
+.headline {
+    text-align: center;
+    color: rgb(100, 150, 255)
+}
+
+.subheadline {
+    text-align: center;
+    color: rgb(100, 150, 255)
+}
+
+h2 {
+    text-align: center;
+    color: purple;
+}
+
+/* List styling */
+li {
+    list-style-type: upper-roman;
+    text-align: justify;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+/* Table styling */
+
+th, td {
+    border: 1px solid black;
+    padding: 5px;
+    text-align: center;
+    border-bottom: 1px solid black;
+}
+
+tr :hover {
+    background-color:  rgb(100, 150, 255);
+}
+
+#table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+/* Button */
+
+button {
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: rgb(100, 150, 255);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    align-self: justify;
+    justify-content: justify;
+}
+
+button:hover {
+    background-color: rgb(50, 100, 255);
+}
+
+/* p */
+p {
+    text-align: center;
+    
+}
