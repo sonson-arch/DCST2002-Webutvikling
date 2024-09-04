@@ -24,7 +24,7 @@ describe('A year is not supported', () => {
 
 describe('A year is undefined', () => {
     test('Year is undefined', () => {
-        expect(() => isLeapYear()).toThrow('Invalid argument');
+        expect(() => isLeapYear(undefined)).toThrow('Invalid argument');
     })
 })
 
