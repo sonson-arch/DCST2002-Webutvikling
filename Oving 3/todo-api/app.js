@@ -15,7 +15,8 @@ app.listen(PORT, () => {
     console.info(`Server running on port ${PORT}`);
 });
 
-// GET metoder
+/* -------------------------------------------------------- GET metoder -------------------------------------------------------- */ 
+
 
 // Hent en bestemt liste
 app.get('/api/v1/lists/:listId', (request, response) => {
@@ -54,7 +55,7 @@ app.get('/api/v1/lists/:listId/tasks/:taskId', (request, response) => {
     }
 });
 
-// POST metoder
+/* ------------------------------------------------------- POST metoder ------------------------------------------------------- */
 
 // Lag en ny liste
 app.post('/api/v1/lists', (request, response) => {
@@ -94,7 +95,7 @@ app.post('/api/v1/lists/:listId/tasks', (request, response) => {
     }
 });
 
-// DELETE metoder
+/* ------------------------------------------------------ DELETE metoder ------------------------------------------------------ */
 
 //  Slett en gitt liste og dens oppgaver
 app.delete('/api/v1/lists/:listId/tasks/:taskId', (request, response) => {
