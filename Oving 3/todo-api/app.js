@@ -15,8 +15,7 @@ app.listen(PORT, () => {
     console.info(`Server running on port ${PORT}`);
 });
 
-/* -------------------------------------------------------- GET metoder -------------------------------------------------------- */ 
-
+/* -------------------------------------------------------- GET metoder -------------------------------------------------------- */
 
 // Hent en bestemt liste
 app.get('/api/v1/lists/:listId', (request, response) => {
@@ -42,7 +41,7 @@ app.get('/api/v1/lists/:listId/tasks', (request, response) => {
     }
 });
 
-//  Hent en bestemt oppgave for en gitt liste
+// Hent en bestemt oppgave for en gitt liste
 app.get('/api/v1/lists/:listId/tasks/:taskId', (request, response) => {
     const listId = request.params.listId;
     const taskId = request.params.taskId;
@@ -66,7 +65,7 @@ app.post('/api/v1/lists', (request, response) => {
     }
     
     if (lists.find(l => l.id == list.id)) {
-        response.status(400).send(`A list with id '${list.id}' already exists.`);
+        return response.status(400).send(`A list with id '${list.id}' already exists.`);
     } else {
         lists.push(list);
         response.status(201);
@@ -81,44 +80,46 @@ app.post('/api/v1/lists/:listId/tasks', (request, response) => {
     const task = request.body;
     
     if (!task.hasOwnProperty('id') || !task.hasOwnProperty('title') || !task.hasOwnProperty('done')) {
-        return response.status(400).send('A task needs the following properties: id, title and done.');
+        return response.status(400).send('A task needs the following properties: id, title, and done.');
     }
     
     if (tasks.find(t => t.id == task.id)) {
-        response.status(400).send(`A task with id '${task.id}' already exists.`);
-    } else {
-        task.listsID = listId;
-        tasks.push(task);
-        response.status(201);
-        response.location('tasks/' + task.id);
-        response.send();
+        return response.status(400).send(`A task with id '${task.id}' already exists.`);
     }
+    
+    task.listsID = listId;
+    tasks.push(task);
+    
+    response.status(201);
+    response.location(`/api/v1/lists/${listId}/tasks/${task.id}`);
+    response.send();
 });
 
 /* ------------------------------------------------------ DELETE metoder ------------------------------------------------------ */
 
-//  Slett en gitt liste og dens oppgaver
-app.delete('/api/v1/lists/:listId/tasks/:taskId', (request, response) => {
-    const listId = request.params.listId;
-    const taskId = request.params.taskId;
-    const index = tasks.findIndex(t => t.listsID == listId && t.id == taskId); 
-    if (index != -1) {
-        tasks.splice(index, 1);
-        response.json(tasks);
-    } else {
-        response.status(404).send(`Failed to delete task with id '${taskId}'. Task not found.`);
-    }
-});
-
-//  Slett en gitt oppgave i en bestemt liste
+// Slett en gitt liste og dens oppgaver
 app.delete('/api/v1/lists/:listId', (request, response) => {
     const listId = request.params.listId;
     const listIndex = lists.findIndex(l => l.id == listId);
     if (listIndex != -1) {
         lists.splice(listIndex, 1);
-        tasks = tasks.filter(t => t.listsID != listId);
-        response.json({ lists, tasks });
+        const remainingTasks = tasks.filter(t => t.listsID != listId);
+        response.json({ lists, tasks: remainingTasks });
     } else {
         response.status(404).send(`Failed to delete list with id '${listId}'. List not found.`);
+    }
+});
+
+// Slett en gitt oppgave i en bestemt liste
+app.delete('/api/v1/lists/:listId/tasks/:taskId', (request, response) => {
+    const listId = request.params.listId;
+    const taskId = request.params.taskId;
+    const taskIndex = tasks.findIndex(t => t.listsID == listId && t.id == taskId);
+    
+    if (taskIndex != -1) {
+        tasks.splice(taskIndex, 1);
+        response.json({ message: `Task with id '${taskId}' deleted successfully.` });
+    } else {
+        response.status(404).send(`Failed to delete task with id '${taskId}' in list '${listId}'. Task not found.`);
     }
 });

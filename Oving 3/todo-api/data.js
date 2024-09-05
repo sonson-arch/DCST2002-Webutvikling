@@ -15,8 +15,44 @@ const tasks = [
         id: 3,
         title: "Gjør lekser",
         done: false,
-        listsID: 3
+        listsID: 1
     }, 
+    {
+        id: 11,
+        title: "Skriv rapport",
+        done: false,
+        listsID: 2
+    },
+    {
+        id: 5,
+        title: "Møt opp på møte",
+        done: false,
+        listsID: 2
+    },
+    {
+        id: 6,
+        title: "Lag presentasjon",
+        done: false,
+        listsID: 2
+    }, 
+    {
+        id: 7,
+        title: "Vask klær",
+        done: false,
+        listsID: 3
+    },
+    {
+        id: 8,
+        title: "Rydd rommet",
+        done: false,
+        listsID: 3
+    },
+    {
+        id: 9,
+        title: "Lag middag",
+        done: false,
+        listsID: 3
+    }
 ];
 
 const lists = [
